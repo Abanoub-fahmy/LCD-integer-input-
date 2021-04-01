@@ -110,6 +110,7 @@ void LCD_WriteString(uint8* str)
 	{
 		uint8 j=0;
 		sint32 num0 = num;
+		// detect number of digits for input integer
 		while (num0 !=0)
 		{
 			num0=num0/10;
@@ -117,14 +118,15 @@ void LCD_WriteString(uint8* str)
 		}
 		uint8 digit[j];
 		uint8 i=0;
-		
-    while(num !=0)
+		// convert input integer to individual digits and put them in array
+        while(num !=0)
    {
-	digit[i]=num%10;
-	num=num/10;
-	i++;
-}
-  while(j>0)
+	    digit[i]=num%10;
+	    num=num/10;
+	    i++;
+    }
+	    // print ASCII number code + every singel digit 
+        while(j>0)
   {
 	  LCD_WriteChar(0x30+digit[j-1]);
 	  j--;
